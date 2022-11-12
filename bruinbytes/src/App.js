@@ -1,15 +1,20 @@
 import './App.css';
-import Main from './Main';
+import Main from './Main'
+import Welcome from './Welcome'
+import NotFound from './NotFound';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+// Main web app
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="bruin.png" alt="cyborg bear"/>
-        <p>
-          Play with <a>Logic Gates</a>
-        </p>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
