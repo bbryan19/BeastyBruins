@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 // Welcome page of application
 function Welcome(props) {
@@ -16,7 +17,7 @@ function Welcome(props) {
           <h1>Bruin Bytes</h1>
           <img src="bruin.png" alt="cyborg bear"/>
           <p>
-            Play with Logic Gates
+            Play with <Button onClick={handleClick}>Logic Gates</Button>
           </p>
         </header>
       </div>

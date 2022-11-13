@@ -1,28 +1,43 @@
 import Dropzone from './DropZone';
-import React, { useCallback } from "react";
+import { GATES } from './data';
+import { move } from './functions';
+import { DragDropContext } from 'react-beautiful-dnd';
+import React from "react";
 
-function Drop() {
-  // onDrop function
-  const onDrop = useCallback(acceptedFiles => {
-    // this callback will be called after files get dropped, we will get the acceptedFiles. If you want, you can even access the rejected files too
-    console.log(acceptedFiles);
-  }, []);
+const initialState = {
+  populate: GATES,
+  empty: ["hello"],
+};
 
-  // We pass onDrop function and accept prop to the component. It will be used as initial params for useDropzone hook
-  return (
-    <main className="App">
-      <h1 className="text-center">Drag and Drop Example</h1>
-      <Dropzone onDrop={onDrop} accept={"image/*"} />
-    </main>
-  );
-}
+class Main extends React.Component {
+  state = initialState;
 
-function Main() {
-  return (
-    <div className="Main">
-      <p>Test</p>
-    </div>
-  );
-}
+  onDragEnd = ({ source, destination }) => {
+    if (!destination) {
+      return;
+    }
+
+    this.setState(state => {
+      return move(state, source, destination);
+    });
+  };
+
+  render() {
+    const { empty, populate } = this.state;
+    return (
+      <div className="Main">
+        <h1 className="text-center">Drag and Drop Logic Gates</h1>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <div className="container">
+            <div className="rows">
+              <Dropzone gates={this.state[empty]} id={GATES.type} />
+              <Dropzone gates={populate} id="start" />
+            </div>
+          </div>
+        </DragDropContext>
+      </div>
+    );
+  };
+};
 
 export default Main;
