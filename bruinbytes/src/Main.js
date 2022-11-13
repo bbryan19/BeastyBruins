@@ -1,12 +1,12 @@
 import Dropzone from './DropZone';
-import { GATES } from './data';
+import { GATES, TYPES } from './data';
 import { move } from './functions';
 import { DragDropContext } from 'react-beautiful-dnd';
 import React from "react";
 
 const initialState = {
   populate: GATES,
-  empty: ["hello"],
+  [TYPES.GATE]: [],
 };
 
 class Main extends React.Component {
@@ -23,14 +23,14 @@ class Main extends React.Component {
   };
 
   render() {
-    const { empty, populate } = this.state;
+    const { populate } = this.state;
     return (
       <div className="Main">
         <h1 className="text-center">Drag and Drop Logic Gates</h1>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="container">
             <div className="rows">
-              <Dropzone gates={this.state[empty]} id={GATES.type} />
+              <Dropzone gates={this.state[TYPES.GATE]} id={TYPES.GATE} />
               <Dropzone gates={populate} id="start" />
             </div>
           </div>

@@ -1,3 +1,9 @@
+export const TYPES = [
+    {
+        GATE: 'gate'
+    }
+]
+
 export const GATES = [
     {
         name: 'and',

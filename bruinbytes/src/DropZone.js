@@ -25,11 +25,8 @@ const Gate = ({ name, index }) => (
             return (
                 <div className="menu-item tile tile-centered" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                     <figure style={{ backgroundColor: 'transparent' }} className="avatar tile-icon">
-                        <img src={`gate_icons/${name}.png`} alt={name} />
+                        <img style={{ width: '5%', height: 'auto' }} src={`gate_icons/${name}.png`} alt={name} />
                     </figure>
-                    <div className="tile-content">
-                        {name}
-                    </div>
                 </div>
             );
         }}
